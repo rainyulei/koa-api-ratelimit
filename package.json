@@ -16,6 +16,7 @@
   "dependencies": {},
   "devDependencies": {
     "ioredis": "^4.16.3",
-    "koa": "^2.11.0"
+    "koa": "^2.11.0",
+    "koa-router": "^8.0.8"
   }
 }

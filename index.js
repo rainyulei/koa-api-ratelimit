@@ -3,7 +3,7 @@
  * @Author: yu-lei
  * @Date: 2020-05-02 19:15:31
  * @Last Modified by: yu-lei
- * @Last Modified time: 2020-05-03 09:42:17
+ * @Last Modified time: 2020-05-08 09:48:54
  * Limit the number of requests per IP per interface per unit time
  */
 const assert = require('assert');
@@ -17,7 +17,7 @@ const apilimit = (() => {
   return db => {
     assert(db, 'db is required!');
     return apiconfig => {
-      const duration = apiconfig.duration || 60;
+      const duration = apiconfig.duration || 60000;
       const max = apiconfig.max || 50;
       const errorFun = apiconfig.failed || null;
       const ipfun = apiconfig.ip || null;
@@ -58,22 +58,22 @@ const apilimit = (() => {
                 remaining,
               });
             }
-            const dealy = (reset * 1000 - Date.now()) | 0;
+            const delay = (reset * 1000 - Date.now()) | 0;
             const after = (reset - Date.now() / 1000) | 0;
             resolve({
-              dealy,
+              delay,
               after,
             });
           });
         });
         if (result.remaining) {
           return await next();
-        } else if (result.dealy) {
+        } else if (result.delay) {
           if (errorFun) {
-            errorFun(ctx, { dealy: result.dealy, after: result.after });
+            errorFun(ctx, { delay: result.delay, after: result.after });
           } else {
             ctx.status = 429;
-            ctx.body = `Rate limitd, retry in ${result.dealy}`;
+            ctx.body = `Rate limitd, retry in ${result.delay}`;
           }
         }
       };
