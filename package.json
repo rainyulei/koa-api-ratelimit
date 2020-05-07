@@ -1,0 +1,21 @@
+{
+  "name": "koa-api-limit",
+  "version": "0.0.1",
+  "description": "koa api rate limit ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa",
+    "rate",
+    "limit"
+  ],
+  "author": "yu-lei",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "ioredis": "^4.16.3",
+    "koa": "^2.11.0"
+  }
+}
