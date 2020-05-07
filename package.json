@@ -1,5 +1,5 @@
 {
-  "name": "koa-api-limit",
+  "name": "koa-api-ratelimit",
   "version": "0.0.1",
   "description": "koa api rate limit ",
   "main": "index.js",
